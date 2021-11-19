@@ -148,7 +148,6 @@ struct LoginView: View {
     }
     
     private func persistImageToStorage() {
-//        let filename = UUID().uuidString
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         let ref = FirebaseManager.shared.storage.reference(withPath: uid)
         guard let imageData = self.image?.jpegData(compressionQuality: 0.5) else { return }
@@ -165,7 +164,7 @@ struct LoginView: View {
                 }
                 
                 self.loginStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
-                print(url?.absoluteString)
+                print(url?.absoluteString ?? "")
                 
                 guard let url = url else { return }
                 self.storeUserInformation(imageProfileUrl: url)
@@ -175,8 +174,8 @@ struct LoginView: View {
     
     private func storeUserInformation(imageProfileUrl: URL) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        let userData = ["email": self.email, "uid": uid, "profileImageUrl": imageProfileUrl.absoluteString]
-        FirebaseManager.shared.firestore.collection("users")
+        let userData = [FirebaseConstants.email: self.email, FirebaseConstants.uid: uid, FirebaseConstants.profileImageUrl: imageProfileUrl.absoluteString]
+        FirebaseManager.shared.firestore.collection(FirebaseConstants.users)
             .document(uid).setData(userData) { err in
                 if let err = err {
                     print(err)
