@@ -14,40 +14,39 @@ struct ChatLogView: View {
     @State var chatText = ""
     
     var body: some View {
-        ZStack {
-            messagesView
-            VStack(spacing: 0) {
-                Spacer()
-                chatBottomBar
-                    .background(Color.white.ignoresSafeArea())
-            }
-        }
-        .navigationTitle(chatUser?.email ?? "")
+        messagesView
+            .navigationTitle(chatUser?.email ?? "")
             .navigationBarTitleDisplayMode(.inline)
     }
     
     private var messagesView: some View {
-        ScrollView {
-            ForEach(0..<20) { num in
-                HStack {
-                    Spacer()
-                    HStack {
-                        Text("FAKE MESSAGE FOR NOW")
-                            .foregroundColor(.white)
+        VStack {
+            if #available(iOS 15.0, *) {
+                ScrollView {
+                    ForEach(0..<20) { num in
+                        HStack {
+                            Spacer()
+                            HStack {
+                                Text("FAKE MESSAGE FOR NOW")
+                                    .foregroundColor(.white)
+                            }
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                        }
+                        .padding(.horizontal)
+                        .padding(.top, 8)
                     }
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(8)
-                }
-                .padding(.horizontal)
-                .padding(.top, 8)
-            }
-            
-            HStack{ Spacer() }
-            .frame(height: 50)
-        }
-        .background(Color(.init(white: 0.95, alpha: 1)))
                     
+                    HStack{ Spacer() }
+                }
+                .background(Color(.init(white: 0.95, alpha: 1)))
+                .safeAreaInset(edge: .bottom) {
+                    chatBottomBar
+                }
+            }
+        }
+        
     }
     
     private var chatBottomBar: some View {
@@ -75,6 +74,7 @@ struct ChatLogView: View {
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
+        .background(Color.white.ignoresSafeArea())
     }
 }
 
