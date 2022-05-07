@@ -68,6 +68,7 @@
 				C716EC922746F40200C49CE8 /* Chat */,
 				C716EC8F2744A35F00C49CE8 /* NewMessage */,
 				C716EC8427405AF000C49CE8 /* MainMessagesView.swift */,
+				C7EDFBF52724DE1B0041EC95 /* LBTASwiftUIFirebaseChatApp.swift */,
 			);
 			path = MainMessages;
 			sourceTree = "<group>";
@@ -129,7 +130,6 @@
 				C716EC8C27442D1100C49CE8 /* Model */,
 				C716EC862743109300C49CE8 /* Utils */,
 				C716EC8327405AE500C49CE8 /* MainMessages */,
-				C7EDFBF52724DE1B0041EC95 /* LBTASwiftUIFirebaseChatApp.swift */,
 				C7EDFBF72724DE1B0041EC95 /* LoginView.swift */,
 				C7EDFC08272747CF0041EC95 /* GoogleService-Info.plist */,
 				C7EDFBF92724DE1E0041EC95 /* Assets.xcassets */,
